@@ -3,6 +3,8 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def aluno(request):
-   pagina='Olá'
-   return HttpResponse(pagina)
+def cadastrar_aluno(request):
+    return render(request, 'aluno/cadastroAluno.html')
+
+def listar_alunos(request):
+    return render(request, 'aluno/listarAlunos.html')

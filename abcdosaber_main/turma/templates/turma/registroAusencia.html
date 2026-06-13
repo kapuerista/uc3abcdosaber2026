@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- define e insere um favicon no documento HTML -->
+    <link href="./img/python.ico" rel="shortcut icon">
+
+    <title>Django - Exercícios</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <!-- <script src="js/aula17.js" defer></script> -->
+    <link href="../css/meu-estilo.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- seu codigo comeca aqui -->
+
+    <header class="container px-0">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light px-0">
+
+            <!-- logo -->
+            <div>
+                <a class="navbar-brand mx-auto">
+                    <img src="../img/python_64.png">
+                </a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mynavbar"
+                aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Navegação Alternativa">
+                Menu <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- menu -->
+            <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
+                <div class="navbar-nav">
+                    <a href="../escola.html" class="nav-link">Início</a>
+                    <a href="cadastroTurma.html" class="nav-link">Cadastrar</a>
+                    <a href="listarTurmas.html" class="nav-link">Listar</a>
+                    <a href="registroAusencia.html" class="nav-link">Registrar Ausência</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- verifica se ha alguma mensagem de retorno e apresenta alerta
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <?=$mensagemAlerta?>
+                </div>
+            </div>
+        </div>
+        -->
+    </header>
+
+    <main class="container m-2 w-75 mx-auto my-font-family">
+
+        <div class="row">
+            <div class="col text-center m-0">
+                <h2 class="mt-2 mb-5 my-h2">Registro de Ausências</h2>
+            </div>
+        </div>
+
+        <!-- formulario para escolher a turma -->
+        <form name="frmDefinirTurma" id="idFrmDefinirTurma" action="#" method="post" class="my-label-color-purple">
+
+            <!-- montagem do combo com as turmas cadastradas que tenha aluno -->
+            <div class="form-group">
+                <label for="idTurma">Turma</label>
+                <select class="form-control" id="idTurma" name="numeroTurma">
+                    <option value="0">Selecione...</option>
+                    <option value="1">Turma 0001 - 10:00:00</option>
+                    <option value="2">Turma 0002 - 13:00:00</option>
+                    <option value="3">Turma 0003 - 18:00:00</option>
+                </select>
+            </div>
+
+            <div class="form-group my-4 text-center">
+                <input type="button" value="Limpar" class="btn btn-primary btn-md" id="idLimparTurmas">
+                <input type="submit" value="Consultar" class="btn btn-primary btn-md">
+            </div>
+
+        </form>
+
+        <!-- formulario HTML para registrar ausencia de alunos de uma turma -->
+        <form name="frmRegistrarAusencia" action="#" method="post" class="my-label-color-purple">
+
+            <!-- utiliza um input "hidden" para armazerar a turma escolhida inicialmente -->
+            <input type="hidden" name="numeroTurmaSelecionada" value="">
+
+            <!-- montagem do combo com os tipos de atividade -->
+            <div class="form-group">
+                <label for="idAlunoTurma">Aluno da Turma</label>
+                <select class="form-control" id="idAlunoTurma" name="matriculaAluno">
+                    <option value="0">Selecione...</option>
+                    <option value="1">Marcos Ferreira</option>
+                    <option value="2">José Mauro</option>
+                    <option value="3">Hian Ferreira</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="idDataAusencia" class="col-form-label">Data da Ausência</label>
+                <input class="form-control" type="date" id="idDataAusencia" name="dataAusencia" required>
+            </div>
+
+            <div class="form-group my-4 text-center">
+                <input type="reset" value="Limpar" class="btn btn-primary btn-md">
+                <input type="submit" value="Registrar" class="btn btn-primary btn-md">
+            </div>
+
+        </form>
+    </main>
+
+    <footer class="container text-center">
+        <div class="row border-top border-primary bg-light">
+            <div class="col font text-primary copyright">
+                <p>&copy; Copyright Pmg Web</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- seu codigo termina aqui -->
+
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
+    </script>
+
+
+    <!-- acoes e validacoes sobre os formularios -->
+    <script type="text/javascript">
+    let vFrmDefinirTurma = document.querySelector('form[name="frmDefinirTurma"]');
+    vFrmDefinirTurma.onsubmit = validarTurmaSelecionada;
+
+    let btnIdLimparTurmas = document.getElementById("idLimparTurmas");
+    btnIdLimparTurmas.onclick = limparFrmDefinirTurma;
+
+    // verifica se o elemento do tipo formulario para a selecao de aluno esta no documento HTML
+    // neste caso, permitir remove-lo quando o botao "Limpar" do formulario da turma for clicado
+    if (document.querySelector('form[name="frmRegistrarAusencia"]')) {
+        let vFrmRegistrarAusencia = document.querySelector('form[name="frmRegistrarAusencia"]');
+        vFrmRegistrarAusencia.onsubmit = validarAlunoSelecionado;
+    }
+
+    // No formulario de selecao da turma, nao é permitido executar o submit para a opcao "Selecione" 
+    function validarTurmaSelecionada() {
+        let turmaSelecionada = document.getElementById('idTurma').value;
+        if (parseInt(turmaSelecionada) == 0) {
+            alert("Selecione uma Turma!");
+            return false;
+        }
+    }
+
+    // No formulario de selecao de aluno da turma, nao é permitido executar o submit para a opcao "Selecione" 
+    function validarAlunoSelecionado() {
+        let alunoSelecionado = document.getElementById('idAlunoTurma').value;
+        if (parseInt(alunoSelecionado) == 0) {
+            alert("Selecione uma dos alunos da Turma!");
+            return false;
+        }
+    }
+
+    // remove do HTML o elemento form onde sera informado o aluno que faltou e sua data
+    // caso 
+    function limparFrmDefinirTurma() {
+
+        // procura o formulario FrmRegistrarAusencia e remove do HTML se existir
+        if (document.querySelector('form[name="frmRegistrarAusencia"]')) {
+            let vFrmRegistrarAusencia = document.querySelector('form[name="frmRegistrarAusencia"]');
+            vFrmRegistrarAusencia.remove();
+        }
+
+        // retorna o valor original da caixa de selecao de Turma
+        document.getElementById('idTurma').selectedIndex = 0;
+    }
+    </script>
+
+
+
+</body>
+
+</html>
