@@ -10,7 +10,7 @@ class Tipodeatividade(models.Model):
     descricao= models.CharField(
         max_length=70,
         null=False,
-        help_text='Informe a descrição do tipos de atividade'
+        help_text='Informe a descrição do tipo de atividade'
     )
     def __str__(self):
         return f'{self.codigo} {self.descricao}'

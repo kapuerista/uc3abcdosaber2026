@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
         <div class="navbar-nav">
             <a href="/" class="nav-link">Início</a>
-            <a href="cadastroTitulos.html" class="nav-link">Cadastrar</a>
+            <a href="{% url 'titulo:cadastro' %}" class="nav-link">Cadastrar</a>
             <a href="{% url 'titulo:listar' %}" class="nav-link">Títulos</a>
         </div>
     </div>
@@ -26,7 +26,7 @@
         </div>
 
         <!-- tabela responsiva -->
-         {%if titulos%}
+         {% if titulos %}
         <div class="table-responsive">
 
             <!-- classes para tabela (Bootstrap) , tabela sem borda, conteudo alinhado ao centro, ... , width: auto -->

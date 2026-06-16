@@ -12,15 +12,29 @@ def listar(request):
     
 
 def cadastrar(request):
-    return render(request, 'titulo/cadastroTitulos.html')
+
+    if request.method == 'POST':
+
+        descricao = request.POST.get('descricao')
+
+        Titulo.objects.create(
+            descricao=descricao
+        )
+
+        return redirect('titulo:listar')
+
+    return render(
+        request,
+        'titulo/cadastroTitulos.html'
+    )
 
 def excluir(request, codigoTitulo):
     try:
-        titulo = titulo.objects.get(pk=codigoTitulo)
+        titulo = Titulo.objects.get(pk=codigoTitulo)
         titulo.delete()
     except Titulo.DoesNotExist:
         pass
-        
+
     return redirect('titulo:listar')
 
 
