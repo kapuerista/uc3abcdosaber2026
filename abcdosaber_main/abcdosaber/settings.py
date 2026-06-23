@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'titulo.apps.TituloConfig',
     'tipodeatividade.apps.TipodeatividadeConfig',
     'aluno.apps.AlunoConfig',
+    'instrutor.apps.InstrutorConfig'
 ]
 
 MIDDLEWARE = [

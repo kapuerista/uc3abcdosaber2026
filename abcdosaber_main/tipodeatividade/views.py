@@ -1,13 +1,20 @@
 from django.shortcuts import render, redirect
 from tipodeatividade.models import Tipodeatividade
 
-# Create your views here.
-def listar (request):
+
+def listar(request):
     lista_tipodeatividade = Tipodeatividade.objects.all()
+
     contexto = {
         'tipodeatividade': lista_tipodeatividade
     }
-    return render(request, 'tipodeatividade/listarTiposAtividade.html', context=contexto)
+
+    return render(
+        request,
+        'tipodeatividade/listarTiposAtividade.html',
+        contexto
+    )
+
 
 def cadastrar(request):
 
@@ -21,12 +28,18 @@ def cadastrar(request):
 
         return redirect('tipodeatividade:listar')
 
-    return render(request, 'tipodeatividade/cadastroTiposAtividade.html')
+    return render(
+        request,
+        'tipodeatividade/cadastroTiposAtividade.html'
+    )
+
 
 def excluir(request, codigoTipoAtividade):
+
     try:
-        tipo_atividade = Tipodeatividade.objects.get(pk=codigoTipoAtividade)
-        tipo_atividade.delete()
+        tipo = Tipodeatividade.objects.get(pk=codigoTipoAtividade)
+        tipo.delete()
+
     except Tipodeatividade.DoesNotExist:
         pass
 
