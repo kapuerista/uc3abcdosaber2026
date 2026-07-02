@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
-from titulo.forms import TituloForm
+from titulo.forms import TituloAtualizarForm, TituloForm
 from titulo.models import Titulo
 
 # Create your views here.
@@ -62,4 +62,30 @@ def error_404(request, exception):
     return render(request, 'erro404.html', status=404)    
 
 def error_500(request):
-    return render(request, 'erro500.html', status=500)    
+    return render(request, 'erro500.html', status=500)
+
+# funções para atualizar o titulo (carregar_titulo e atualizar)
+def carregar_titulo(request,codigo):
+    #recuperar titulo a ser atualizado
+    titulo = Titulo.objects.get(pk=codigo)
+    contexto = {
+        'titulo' : titulo
+    }
+    
+    return render(request, 'titulo/atualizarTitulo.html', context=contexto) 
+
+def atualizar(request):
+    if request.method == 'POST':
+        
+        form = TituloAtualizarForm(request.POST)
+        if form.is_valid():
+        
+            dados_titulo = form.cleaned_data
+        
+            codigo = dados_titulo['codigo']
+            titulo = Titulo.objects.get(pk=codigo)
+        
+            titulo.descricao = dados_titulo['descricao']
+            titulo.save()
+            return redirect('titulo:listar')
+    return redirect('titulo:listar')

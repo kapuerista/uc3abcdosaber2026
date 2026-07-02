@@ -46,4 +46,5 @@ def carregar_cadastro(request):
     }
     
     return render(request, 'instrutor/cadastroInstrutor.html', context=contexto)
+
     
