@@ -4,7 +4,7 @@ from titulo.models import Titulo
 
 # Create your models here.
 class Instrutor(models.Model):
-    """ Modelo representando um Título """
+    
     id = models.AutoField(
         primary_key=True,
         help_text='Id do instrutor'

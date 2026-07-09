@@ -10,14 +10,16 @@ class Aluno(models.Model):
 
     nome = models.CharField(
         max_length=100,
-        null=False
+        null=False,
+        help_text="Informe o nome do aluno"
     )
 
     data_matricula = models.DateField()
 
     data_saida = models.DateField(
         null=True,
-        blank=True
+        blank=True,
+        help_text="Informe a data final de matrícula do aluno"
     )
 
     monitor = models.BooleanField(default=False)
